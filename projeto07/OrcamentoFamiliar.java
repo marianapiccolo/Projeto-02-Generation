@@ -8,21 +8,25 @@ public class OrcamentoFamiliar {
 		Metodo metodo = new Metodo();
 		Login login = new Login();
 		
-		int opcao = 1;
-		int opcao1 = 0;
-
+		int opcao = 5;
+		int opcao1 = 5;
+		
 		while (opcao != 0) {
-			opcao = Integer.parseInt(JOptionPane.showInputDialog(null, "Escolha uma opção para iniciar \n1 - Logar \n2 - Cadastrar novo usuárie. \n0 - Finalizar sistema"));			
-			
+			try {
+			opcao = Integer.parseInt(JOptionPane.showInputDialog(null, "Escolha uma opção para iniciar \n1 - Logar \n2 - Cadastrar novo usuárie \n0 - Finalizar sistema"));			
+		} catch (NumberFormatException e) {
+		}
 			//Laço de decisão para fazer login/cadastro
-
+			
 			switch (opcao) {
 			case 1:				
 				login.setLogin();
 								
-				do {		
-				opcao1 = Integer.parseInt(JOptionPane.showInputDialog(null, "Escolha uma opção:\n1 - Cadastrar \n2 - Editar \n3 - Excluir \n4 - Consultar \n0 - Fazer logout"));
-				
+				do {
+				try {
+				opcao1 = Integer.parseInt(JOptionPane.showInputDialog(null, "Escolha uma opção:\n1 - Cadastrar \n2 - Editar \n3 - Excluir \n4 - Consultar \n5 - Resgatar Investimento \n0 - Fazer logout"));
+				} catch (NumberFormatException e) {
+				}
 				//Laço de decisão para usar o sistema
 				
 				switch (opcao1) {
@@ -45,7 +49,11 @@ public class OrcamentoFamiliar {
 				case 4:
 					metodo.consultarLista();
 					break;
-				
+					
+				case 5:
+					metodo.resgate();
+					break;
+					
 				default:
 					JOptionPane.showMessageDialog(null ,"Opção inválida","Alerta!",JOptionPane.ERROR_MESSAGE);
 				}
@@ -66,6 +74,7 @@ public class OrcamentoFamiliar {
 			default:
 				JOptionPane.showMessageDialog(null ,"Opção inválida","Alerta!",JOptionPane.ERROR_MESSAGE);
 			}
+			
 		}
 	}
 }

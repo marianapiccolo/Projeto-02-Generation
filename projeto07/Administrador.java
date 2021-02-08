@@ -5,19 +5,13 @@ public class Administrador {
 	private String endereco;
 	private long cpf;
 	private String telefone;
-	private double receitaMensal;
 	private String senha;
 	
-	public Administrador(String nome, String endereco, long cpf, String telefone, double receitaMensal) {
+	public Administrador(String nome, String endereco, long cpf, String telefone) {
 		this.nome = nome;
 		this.endereco = endereco;
 		this.cpf = cpf;
 		this.telefone = telefone;
-		this.receitaMensal = receitaMensal;
-	}
-	
-	public Administrador() {
-		
 	}
 
 	public String getNome() {
@@ -50,14 +44,6 @@ public class Administrador {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-
-	public double getReceitaMensal() {
-		return receitaMensal;
-	}
-
-	public void setReceitaMensal(double receitaMensal) {
-		this.receitaMensal = receitaMensal;
 	}
 
 	public String getSenha() {

@@ -11,6 +11,10 @@ public class Metodo extends Login {
 	List<Double> gastosFixosValor = new ArrayList<Double>();
 	List<String> gastosVariaveisNome = new ArrayList<String>();
 	List<Double> gastosVariaveisValor = new ArrayList<Double>();
+	List<String> nomeResgate = new ArrayList<String>();
+	List<Double> valorResgate = new ArrayList<Double>();
+	List<String> dataResgate = new ArrayList<String>();
+	int a = 0;	
 	double investimento, investimentoTotal;
 	
 	public String formatarMoeda(double valor) {
@@ -23,8 +27,12 @@ public class Metodo extends Login {
 //******************************************* CADASTROS DE CUSTOS *************************************************************************
 	
 	public void cadastros() {
-		int opcao = Integer.parseInt(JOptionPane.showInputDialog(null, "Escolha uma opção para cadastrar:\n1 - Gastos Fixos \n2 - Gastos Variáveis \n3 - Investimentos \n4 - Voltar"));
-		
+		int opcao = 5;
+		try {
+		opcao = Integer.parseInt(JOptionPane.showInputDialog(null, "Escolha uma opção para cadastrar:\n1 - Gastos Fixos \n2 - Gastos Variáveis \n3 - Investimentos \n4 - Voltar"));
+		} catch (NumberFormatException e) {
+			
+		}
 		int alternativa = 0;
 		
 		switch (opcao) {
@@ -57,8 +65,7 @@ public class Metodo extends Login {
 			
 		case 3:
 			investimento = Double.parseDouble(JOptionPane.showInputDialog(null, "Entre com o valor para investimento: "));
-			investimentoTotal = investimentoTotal + investimento;
-			
+			investimentoTotal = investimentoTotal + investimento;			
 			break;
 			
 		case 4:
@@ -72,58 +79,72 @@ public class Metodo extends Login {
 //*********************************************** EDITAR **************************************************************
 
 	public void editar() {
-		int opcao = Integer.parseInt(JOptionPane.showInputDialog(null, "Escolha uma categoria para editar:\n1 - Gastos Fixos \n2 - Gastos Variáveis \n3 - Voltar"));
-		
-		switch (opcao) {
-		
-		case 1:
-		
-			System.out.println("***********************************************************************************");
-		
-			for(int x = 0; x < gastosFixosNome.size(); x++){			
-			
-			System.out.println("Posição " + x + "\tNome da conta: " + gastosFixosNome.get(x) + "\nValor: R$ " + gastosFixosValor.get(x) + "\n");
-		}
-		
-			System.out.println("Fim da lista!");
-		
-			int x = Integer.parseInt(JOptionPane.showInputDialog(null, "Sua lista está impressa no console, digite a posição que você quer atualizar"));
-		
-			gastosFixosNome.remove(x);
-			gastosFixosValor.remove(x);
-		
-			gastosFixosNome.add(JOptionPane.showInputDialog(null, "Digite o novo nome da conta: "));
-			gastosFixosValor.add(Double.parseDouble(JOptionPane.showInputDialog(null, "Entre com o novo valor: ")));
-		
-			break;
-		
-		case 2:
-			
-			System.out.println("***********************************************************************************");
-			
-			for(x = 0; x < gastosVariaveisNome.size(); x++){			
-				
-				System.out.println("Posição " + x + "\tNome da conta: " + gastosVariaveisNome.get(x) + "\nValor: R$ " + gastosVariaveisValor.get(x) + "\n");
+		int opcao = 0;
+
+		while (opcao != 3) {
+
+			try {
+				opcao = Integer.parseInt(JOptionPane.showInputDialog(null,
+						"Escolha uma categoria para editar:\n1 - Gastos Fixos \n2 - Gastos Variáveis \n3 - Voltar"));
+			} catch (NumberFormatException e) {
 			}
-			
-			System.out.println("Fim da lista!");
-			
-			x = Integer.parseInt(JOptionPane.showInputDialog(null, "Sua lista está impressa no console, digite a posição que você quer atualizar"));
-			
-			gastosVariaveisNome.remove(x);
-			gastosVariaveisValor.remove(x);
-			
-			gastosVariaveisNome.add(JOptionPane.showInputDialog(null, "Digite o novo nome da conta: "));
-			gastosVariaveisValor.add(Double.parseDouble(JOptionPane.showInputDialog(null, "Entre com o novo valor: ")));
-			
-			break;
-			
-		case 3:
-			break;
-			
-		default:
-			JOptionPane.showMessageDialog(null ,"Opção inválida","Alerta!",JOptionPane.ERROR_MESSAGE);
-		}		
+			switch (opcao) {
+
+			case 1:
+
+				System.out
+						.println("***********************************************************************************");
+
+				for (int x = 0; x < gastosFixosNome.size(); x++) {
+
+					System.out.println("Posição " + x + "\tNome da conta: " + gastosFixosNome.get(x) + "\nValor: R$ "
+							+ gastosFixosValor.get(x) + "\n");
+				}
+
+				System.out.println("Fim da lista!");
+
+				int x = Integer.parseInt(JOptionPane.showInputDialog(null,
+						"Sua lista está impressa no console, digite a posição que você quer atualizar"));
+
+				gastosFixosNome.remove(x);
+				gastosFixosValor.remove(x);
+
+				gastosFixosNome.add(JOptionPane.showInputDialog(null, "Digite o novo nome da conta: "));
+				gastosFixosValor.add(Double.parseDouble(JOptionPane.showInputDialog(null, "Entre com o novo valor: ")));
+
+				break;
+
+			case 2:
+
+				System.out
+						.println("***********************************************************************************");
+
+				for (x = 0; x < gastosVariaveisNome.size(); x++) {
+
+					System.out.println("Posição " + x + "\tNome da conta: " + gastosVariaveisNome.get(x)
+							+ "\nValor: R$ " + gastosVariaveisValor.get(x) + "\n");
+				}
+
+				System.out.println("Fim da lista!");
+
+				x = Integer.parseInt(JOptionPane.showInputDialog(null,
+						"Sua lista está impressa no console, digite a posição que você quer atualizar"));
+
+				gastosVariaveisNome.remove(x);
+				gastosVariaveisValor.remove(x);
+
+				gastosVariaveisNome.add(JOptionPane.showInputDialog(null, "Digite o novo nome da conta: "));
+				gastosVariaveisValor.add(Double.parseDouble(JOptionPane.showInputDialog(null, "Entre com o novo valor: ")));
+
+				break;
+
+			case 3:
+				break;
+
+			default:
+				JOptionPane.showMessageDialog(null, "Opção inválida", "Alerta!", JOptionPane.ERROR_MESSAGE);
+			}
+		}
 	}		
 
 //*********************************************** EXCLUIR **************************************************************
@@ -199,7 +220,7 @@ public class Metodo extends Login {
 	public void consultarLista() {
 
 		int opcao = Integer.parseInt(JOptionPane.showInputDialog(null,
-				"Escolha uma categoria para consultar:\n1 - Gastos Fixos \n2 - Gastos Variáveis \n3 - Valor total de investimentos \n4 - Saldo \n5 - Voltar"));
+				"Escolha uma categoria para consultar:\n1 - Gastos Fixos \n2 - Gastos Variáveis \n3 - Valor total de investimentos \n4 - Total de contas à pagar \n5 - Extrato resgates \n0 - Voltar"));
 
 		switch (opcao) {
 
@@ -250,12 +271,27 @@ public class Metodo extends Login {
 				somaVariaveis = somaVariaveis + soma2;
 			}
 			
-			double saldo =  mae.getReceitaMensal() + pai.getReceitaMensal() - somaFixos - somaVariaveis;
+			double saldo = 0;
+			saldo =  saldo + (somaFixos + somaVariaveis);
 			
-			JOptionPane.showMessageDialog(null, "Seu saldo total é de " + this.formatarMoeda(saldo));
+			JOptionPane.showMessageDialog(null, "Seu total de contas a pagar é de " + this.formatarMoeda(saldo));
 			break;
 		
 		case 5:
+			System.out.println("***********************************************************************************");
+
+			for (int x = 0; x < nomeResgate.size(); x++) {
+
+				System.out.println("Usuário " + nomeResgate.get(x) + " resgatou valor: R$ "
+						+ valorResgate.get(x) + " em " + dataResgate.get(x));
+			}
+
+			System.out.println("Fim da lista!");
+
+			JOptionPane.showMessageDialog(null, "Sua lista está impressa no console.");
+			break;
+			
+		case 0:
 			break;
 
 		default:
@@ -263,5 +299,36 @@ public class Metodo extends Login {
 		}
 
 	}
+	
+//*********************************************** RESGATE INVESTIMENTO **************************************************************
 
+	
+	public void resgate() {		
+		
+		int z = 1;
+		String verificacao = null;
+		
+		do {
+		
+		nomeResgate.add(JOptionPane.showInputDialog(null, "Digite o usuário: "));
+		verificacao = nomeResgate.get(a);
+		
+		if (verificacao.equals(mae.getNome())) {
+			z = 0;
+		} else {
+			JOptionPane.showMessageDialog(null, "Digite um usuário válido!", "Alerta!", JOptionPane.ERROR_MESSAGE);
+			z = 1;
+			nomeResgate.remove(a);
+		}
+	} while (z != 0);	
+		valorResgate.add(Double.parseDouble(JOptionPane.showInputDialog(null, "Qual é o valor do resgate? ")));	
+		dataResgate.add(JOptionPane.showInputDialog(null, "Digite a data do resgate. "));		
+				
+		for (double resgate : valorResgate) {
+		investimentoTotal = investimentoTotal - resgate;
+		}
+		
+		JOptionPane.showMessageDialog(null, nomeResgate.get(a) + " resgatou R$ " + valorResgate.get(a) + " na data " + dataResgate.get(a));		
+		a++;
+	}
 }
